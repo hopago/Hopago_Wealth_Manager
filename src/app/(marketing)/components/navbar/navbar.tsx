@@ -1,6 +1,6 @@
 import { Links } from "./links";
 import { Logo } from "./logo";
-import { UserButton } from "./user-button";
+import { UserButton } from "../user-button";
 
 export const Navbar = () => {
   return (
