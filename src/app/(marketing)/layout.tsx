@@ -1,4 +1,4 @@
-import { ScrollSmoothProvider } from "../providers/scroll-smooth-provider";
+import { ScrollSmoothProvider } from "../../providers/scroll-smooth-provider";
 
 interface MarketingLayoutProps {
   children: React.ReactNode;
