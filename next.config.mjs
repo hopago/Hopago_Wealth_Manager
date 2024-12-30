@@ -5,15 +5,15 @@ const nextConfig = {
     transpilePackages: ["three"],
     webpack(config) {
         config.module.rules.push({
-            test: /\.(glb|gltf)$/, // GLB/GLTF 파일 처리
-            include: [path.resolve(process.cwd(), "src/lib/three/assets/3d")],
+            test: /\.(glb|gltf)$/,
+            include: [path.resolve(process.cwd(), "src/lib/three/assets")],
             use: [
                 {
                     loader: "file-loader",
                     options: {
                         name: "[name].[hash].[ext]",
-                        outputPath: "static/assets/3d",
-                        publicPath: "/_next/static/assets/3d",
+                        outputPath: "static/assets",
+                        publicPath: "/_next/static/assets",
                     },
                 },
             ],
