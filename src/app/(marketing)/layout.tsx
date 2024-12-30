@@ -1,3 +1,4 @@
+import { Navbar } from "@/features/(marketing)/components/navbar/navbar";
 import { ScrollSmoothProvider } from "../../providers/scroll-smooth-provider";
 
 interface MarketingLayoutProps {
@@ -5,7 +6,12 @@ interface MarketingLayoutProps {
 }
 
 const MarketingLayout = ({ children }: MarketingLayoutProps) => {
-  return <ScrollSmoothProvider>{children}</ScrollSmoothProvider>;
+  return (
+    <>
+      <Navbar />
+      <ScrollSmoothProvider>{children}</ScrollSmoothProvider>
+    </>
+  );
 };
 
 export default MarketingLayout;

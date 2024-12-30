@@ -91,20 +91,20 @@
 
 /* Theme Color */
 :root {
+    /* 블랙 */
   --color-black: #181818;
-  /* 블랙 */
+    /* 밝은 블랙 */
   --color-black-light: #292929;
-  /* 밝은 블랙 */
+    /* 프로젝트 퍼플 */
   --color-purple: #7B1FA2;
-  /* 프로젝트 퍼플 */
+    /* 어두운 퍼플 */
   --color-purple-dark: #6A0DAD;
-  /* 어두운 퍼플 */
+    /* 밝은 퍼플 */
   --color-purple-light: #A05AB5;
-  /* 밝은 퍼플 */
+    /* 부드러운 회색 */
   --color-gray: #F5F5F5;
-  /* 부드러운 회색 */
+    /* 흰색 */
   --color-white: #FFFFFF;
-  /* 흰색 */
 }
 
 /* Background Color */
@@ -199,4 +199,8 @@
 .text-light-shadow {
   text-shadow: 0px 2px 4px #fefefe;
   /* 흰색 그림자 */
+}
+
+.c-scrollbar_thumb {
+  background-color: #fefefe !important;
 }

@@ -1,6 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import LocomotiveScroll from "locomotive-scroll";
+import "locomotive-scroll/dist/locomotive-scroll.css";
+import { gsap } from "gsap";
 
 interface ScrollSmoothProviderProps {
   children: React.ReactNode;
@@ -9,43 +12,34 @@ interface ScrollSmoothProviderProps {
 export const ScrollSmoothProvider: React.FC<ScrollSmoothProviderProps> = ({
   children,
 }) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    let isThrottling = false;
-    const throttleDelay = 75;
+    const scroll = new LocomotiveScroll({
+      el: scrollContainerRef.current ?? undefined,
+      smooth: true,
+    });
 
-    const smoothScroll = (
-      domElement: HTMLElement,
-      pixel: number,
-      delay: number
-    ) => {
-      const intervalToRepeat = 25;
-      const step = (intervalToRepeat * pixel) / delay;
-      if (step < pixel) {
-        domElement.scrollTop += step;
-        setTimeout(
-          () => smoothScroll(domElement, pixel - step, delay),
-          intervalToRepeat
-        );
-      }
-    };
-
-    const handleWheel = (event: WheelEvent) => {
-      if (isThrottling) return;
-      isThrottling = true;
-      setTimeout(() => (isThrottling = false), throttleDelay);
-
-      if (event.deltaY > 0) {
-        event.preventDefault();
-        smoothScroll(document.documentElement, 100, 500);
-      }
-    };
-
-    document.addEventListener("wheel", handleWheel, { passive: false });
+    scroll.on("scroll", () => {
+      const elements = document.querySelectorAll(".fade-in");
+      elements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          gsap.to(el, { opacity: 1, y: 0, duration: 1 });
+        } else {
+          gsap.to(el, { opacity: 0, y: 50, duration: 1 });
+        }
+      });
+    });
 
     return () => {
-      document.removeEventListener("wheel", handleWheel);
+      scroll.destroy();
     };
   }, []);
 
-  return <>{children}</>;
+  return (
+    <div ref={scrollContainerRef} data-scroll-container>
+      {children}
+    </div>
+  );
 };
