@@ -1,13 +1,9 @@
 import Link from "next/link";
 
+import { Code2Icon, GithubIcon } from "lucide-react";
+
 import { navItems, socialItems } from "../../constants";
 import { ContactForm } from "./contact-form";
-import {
-  Code2Icon,
-  GithubIcon,
-  InstagramIcon,
-  YoutubeIcon,
-} from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -43,7 +39,7 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-      <hr className="h-0.5 bg-black-lite opacity-20 my-11" />
+      <hr className="h-0.5 bg-custom-black-light opacity-20 my-11" />
       <div className="flex items-center justify-between w-full px-14">
         <div className="flex gap-x-3 items-center">
           <span className="font-bold text-base">in</span>

@@ -91,116 +91,111 @@
 
 /* Theme Color */
 :root {
-    /* 블랙 */
-  --color-black: #181818;
-    /* 밝은 블랙 */
-  --color-black-light: #292929;
-    /* 프로젝트 퍼플 */
-  --color-purple: #7B1FA2;
-    /* 어두운 퍼플 */
-  --color-purple-dark: #6A0DAD;
-    /* 밝은 퍼플 */
-  --color-purple-light: #A05AB5;
-    /* 부드러운 회색 */
-  --color-gray: #F5F5F5;
-    /* 흰색 */
-  --color-white: #FFFFFF;
+  --custom-black: #181818;
+  --custom-black-light: #292929;
+  --custom-purple: #7B1FA2;
+  --custom-purple-dark: #6A0DAD;
+  --custom-purple-light: #A05AB5;
+  --custom-gray: #F5F5F5;
+  --custom-white: #FFFFFF;
 }
 
 /* Background Color */
-.bg-black {
-  background-color: var(--color-black);
+.bg-custom-black {
+  background-color: var(--custom-black);
 }
 
-.bg-black-light {
-  background-color: var(--color-black-light);
+.bg-custom-black-light {
+  background-color: var(--custom-black-light);
 }
 
-.bg-purple {
-  background-color: var(--color-purple);
+.bg-custom-purple {
+  background-color: var(--custom-purple);
 }
 
-.bg-purple-light {
-  background-color: var(--color-purple-light);
+.bg-custom-purple-light {
+  background-color: var(--custom-purple-light);
 }
 
-.bg-gray {
-  background-color: var(--color-gray);
+.bg-custom-gray {
+  background-color: var(--custom-gray);
 }
 
-.bg-white {
-  background-color: var(--color-white);
+.bg-custom-white {
+  background-color: var(--custom-white);
 }
 
 /* Border Color */
-.border-black {
-  border-color: var(--color-black);
+.border-custom-black {
+  border-color: var(--custom-black);
 }
 
-.border-purple {
-  border-color: var(--color-purple);
+.border-custom-purple {
+  border-color: var(--custom-purple);
 }
 
-.border-gray {
-  border-color: var(--color-gray);
+.border-custom-gray {
+  border-color: var(--custom-gray);
 }
 
-.border-white {
-  border-color: var(--color-white);
+.border-custom-white {
+  border-color: var(--custom-white);
 }
 
 /* Text Color */
-.text-black {
-  color: var(--color-black);
+.text-custom-black {
+  color: var(--custom-black);
 }
 
-.text-purple {
-  color: var(--color-purple);
+.text-custom-purple {
+  color: var(--custom-purple);
 }
 
-.text-purple-light {
-  color: var(--color-purple-light);
+.text-custom-purple-light {
+  color: var(--custom-purple-light);
 }
 
-.text-gray {
-  color: var(--color-gray);
+.text-custom-gray {
+  color: var(--custom-gray);
 }
 
-.text-white {
-  color: var(--color-white);
+.text-custom-white {
+  color: var(--custom-white);
 }
 
 /* Utilities */
-.text-shadow-purple {
+.text-shadow-custom-purple {
   text-shadow: 0px 2px 4px rgba(123, 31, 162, 0.5);
-  /* 모던 보라 그림자 */
 }
 
-.text-shadow-black {
+.text-shadow-custom-black {
   text-shadow: 0px 2px 4px rgba(24, 24, 24, 0.5);
-  /* 모던 블랙 그림자 */
 }
 
-.border-rounded {
+.border-custom-rounded {
   border-radius: 8px;
-  /* 둥근 모서리 */
 }
 
-.box-shadow-purple {
-  box-shadow: 0px 4px 6px rgba(123, 31, 162, 0.3);
-  /* 퍼플 그림자 */
+.box-shadow-custom-purple {
+  box-shadow: 2px 2px 10px 0px rgba(123, 31, 162, 0.3);
 }
 
-.box-shadow-black {
-  box-shadow: 0px 4px 6px rgba(24, 24, 24, 0.3);
-  /* 블랙 그림자 */
+.box-shadow-custom-black {
+  box-shadow: 2px 2px 10px 0px rgba(24, 24, 24, 0.3);
 }
 
-.text-light-shadow {
+.box-shadow-custom-gray {
+  box-shadow: 2px 2px 10px 0px rgba(245, 245, 245, 0.3);
+}
+
+.box-shadow-custom-white {
+  box-shadow: 2px 2px 10px 0px rgba(255, 255, 255, 0.3);
+}
+
+.text-light-custom-shadow {
   text-shadow: 0px 2px 4px #fefefe;
-  /* 흰색 그림자 */
 }
 
-.c-scrollbar_thumb {
+.scrollbar-custom-thumb {
   background-color: #fefefe !important;
 }

@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import * as THREE from "three";
+import { useGLTF } from "@react-three/drei";
 import { usePointer } from "../hooks/use-pointer";
 import computerScene from "../assets/computer.glb";
 
@@ -79,3 +80,5 @@ export default function Computer() {
     </group>
   );
 }
+
+useGLTF.preload(computerScene);

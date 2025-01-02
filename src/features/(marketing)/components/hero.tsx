@@ -10,7 +10,7 @@ export const Hero = () => {
       <div className="flex h-full items-end relative z-10">
         <div className="flex flex-col px-14 gap-y-3">
           <h1 className="text-white text-7xl font-bold leading-tight drop-shadow-sm">
-            계획적으로, A-Z까지 <br /> 자산 관리를 도와드립니다
+            A-Z까지 <br /> 자산 관리를 도와드립니다
           </h1>
           <p className="text-[#E0E0E0] text-3xl leading-relaxed text-balance">
             Hopago Wealth Manager는 가계부, 투자 관리, 채권, 암호화폐를 하나로

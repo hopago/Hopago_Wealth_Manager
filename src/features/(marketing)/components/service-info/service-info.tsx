@@ -6,11 +6,12 @@ import { cn } from "@/lib/utils";
 import { LinkButton } from "@/features/components/buttons/link-button";
 import { VariantProps } from "class-variance-authority";
 import { buttonVariants } from "@/components/ui/button";
+import { ModelName } from "@/lib/three/types";
 
 type ServiceInfoProps = {
   title: string;
   subtitle: string;
-  modelName: string;
+  modelName: ModelName;
   className?: string;
   hasButton?: boolean;
   buttonTitle?: string;
@@ -20,7 +21,7 @@ type ServiceInfoProps = {
 };
 
 interface RenderThreeProps {
-  name: string;
+  name: ModelName;
 }
 
 const RenderThree = dynamic<RenderThreeProps>(

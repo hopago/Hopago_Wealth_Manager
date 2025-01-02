@@ -13,3 +13,5 @@ export type ModelProps = {
   scale: THREE.Vector3;
   rotation: THREE.Euler;
 };
+
+export type ModelName = "lamp" | "computer" | "bitcoin";

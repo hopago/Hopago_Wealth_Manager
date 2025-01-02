@@ -7,11 +7,13 @@ import { Loader } from "@/components/loader";
 import Background from "./models/bg";
 import { adjustModelForScreenSize } from "./utils/adjust-model-for-screen";
 import Computer from "./models/computer";
+import { ModelName } from "./types";
+import Bitcoin from "./models/bitcoin";
 
 const Lamp = lazy(() => import("./models/lamp"));
 
 interface RenderThreeProps {
-  name: string;
+  name: ModelName;
 }
 
 const RenderThree = ({ name }: RenderThreeProps) => {
@@ -26,6 +28,8 @@ const RenderThree = ({ name }: RenderThreeProps) => {
     content = <Lamp />;
   } else if (name === "computer") {
     content = <Computer />;
+  } else if (name === "bitcoin") {
+    content = <Bitcoin />;
   }
 
   return (
