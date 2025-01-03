@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { LinkButton } from "@/features/components/buttons/link-button";
 import { ServiceInfoItem } from "@/constants";
 import { RenderThreeProps } from "@/lib/three/render-three";
+import { fadeIn } from "@/lib/framer-motion/utils";
 
 const RenderThree = dynamic<RenderThreeProps>(
   () => import("@/lib/three/render-three"),
@@ -45,10 +46,9 @@ export const ServiceInfo = ({
               ? "w-fit mx-auto text-left"
               : "text-left"
           )}
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          initial="hidden"
+          animate="show"
+          variants={fadeIn("right", "spring", 0, 750)}
         >
           {/* 헤더와 서브헤더 */}
           <div className="w-fit h-fit flex items-center gap-1">
