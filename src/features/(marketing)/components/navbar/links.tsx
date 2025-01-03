@@ -2,6 +2,8 @@ import Link from "next/link";
 
 import { navItems } from "../../constants";
 
+// TODO: ADD ACTIVE BY PATHNAME
+
 export const Links = () => {
   return (
     <div className="hidden xl:flex items-center justify-center flex-1 gap-x-3">

@@ -12,7 +12,7 @@ import Bitcoin from "./models/bitcoin";
 
 const Lamp = lazy(() => import("./models/lamp"));
 
-interface RenderThreeProps {
+export interface RenderThreeProps {
   name: ModelName;
 }
 

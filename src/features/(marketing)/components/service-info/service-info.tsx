@@ -1,28 +1,12 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
 import { LinkButton } from "@/features/components/buttons/link-button";
-import { VariantProps } from "class-variance-authority";
-import { buttonVariants } from "@/components/ui/button";
-import { ModelName } from "@/lib/three/types";
-
-type ServiceInfoProps = {
-  title: string;
-  subtitle: string;
-  modelName: ModelName;
-  className?: string;
-  hasButton?: boolean;
-  buttonTitle?: string;
-  buttonUrl?: string;
-  buttonVariant?: Pick<VariantProps<typeof buttonVariants>, "variant">;
-  buttonSize?: Pick<VariantProps<typeof buttonVariants>, "size">;
-};
-
-interface RenderThreeProps {
-  name: ModelName;
-}
+import { ServiceInfoItem } from "@/constants";
+import { RenderThreeProps } from "@/lib/three/render-three";
 
 const RenderThree = dynamic<RenderThreeProps>(
   () => import("@/lib/three/render-three"),
@@ -39,7 +23,7 @@ export const ServiceInfo = ({
   buttonUrl = "#",
   buttonVariant = { variant: "white" },
   buttonSize = { size: "lg" },
-}: ServiceInfoProps) => {
+}: ServiceInfoItem) => {
   return (
     <section
       className={cn(
@@ -54,13 +38,17 @@ export const ServiceInfo = ({
 
       {/* 텍스트 및 버튼 */}
       <div className="flex-1 h-full relative flex flex-col justify-center">
-        <div
+        <motion.div
           className={cn(
-            "text-balance",
+            "text-balance transition-all duration-75 ease-out",
             className?.includes("flex-row-reverse")
               ? "w-fit mx-auto text-left"
               : "text-left"
           )}
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
         >
           {/* 헤더와 서브헤더 */}
           <div className="w-fit h-fit flex items-center gap-1">
@@ -71,7 +59,7 @@ export const ServiceInfo = ({
           <p className="text-xl text-muted-foreground leading-relaxed">
             {subtitle}
           </p>
-        </div>
+        </motion.div>
 
         {/* 버튼 표시 */}
         {hasButton && (

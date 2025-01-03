@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { fadeIn } from "@/lib/framer-motion/utils";
+
 export const Hero = () => {
   return (
     <div
@@ -8,7 +13,12 @@ export const Hero = () => {
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/80"></div>
       <div className="flex h-full items-end relative z-10">
-        <div className="flex flex-col px-14 gap-y-3">
+        <motion.div
+          initial="hidden"
+          animate="show"
+          className="flex flex-col px-14 gap-y-3 transition-all duration-75 ease-out"
+          variants={fadeIn("right", "spring", 0, 0.75)}
+        >
           <h1 className="text-white text-7xl font-bold leading-tight drop-shadow-sm">
             A-Z까지 <br /> 자산 관리를 도와드립니다
           </h1>
@@ -19,7 +29,7 @@ export const Hero = () => {
             <span className="text-[#E0E0E0] font-semibold">금융 관리 졸업</span>
             을 향해 나아가세요!
           </p>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

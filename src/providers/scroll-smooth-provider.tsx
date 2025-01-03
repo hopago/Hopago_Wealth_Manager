@@ -21,7 +21,7 @@ export const ScrollSmoothProvider: React.FC<ScrollSmoothProviderProps> = ({
     });
 
     scroll.on("scroll", () => {
-      const elements = document.querySelectorAll(".fade-in");
+      const elements = document?.querySelectorAll(".fade-in");
       elements.forEach((el) => {
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight && rect.bottom > 0) {
