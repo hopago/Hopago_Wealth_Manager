@@ -50,3 +50,42 @@ export const SERVICE_INFOS: ServiceInfoItem[] = [
     className: "",
   },
 ];
+
+export const navItems = [
+  {
+    label: "소개",
+    href: "/about",
+  },
+  {
+    label: "이용 방법",
+    href: "/how-it-works",
+  },
+  {
+    label: "문의하기",
+    href: "/contact",
+  },
+];
+
+export const socialItems = [
+  {
+    label: "디스코드",
+    href: "https://discord.com",
+  },
+  {
+    label: "유튜브",
+    href: "https://youtube.com",
+  },
+  {
+    label: "인스타그램",
+    href: "https://instagram.com",
+  },
+];
+
+export const features = [
+  "총 자산 관리",
+  "수입/지출 통계",
+  "목표 수익률 설정",
+  "실시간 투자 성과",
+  "배당/채권 알림",
+  "캘린더 기반 일정 관리",
+];

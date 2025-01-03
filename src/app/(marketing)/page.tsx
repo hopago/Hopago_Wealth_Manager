@@ -1,6 +1,6 @@
 import { TextCard } from "@/components/ui/card";
 import { SERVICE_INFOS } from "@/constants";
-import { Hero } from "@/features/(marketing)/components/hero";
+import { Hero } from "@/features/(marketing)/components/hero/hero";
 import { ServiceInfo } from "@/features/(marketing)/components/service-info/service-info";
 
 export default function MarketingPage() {

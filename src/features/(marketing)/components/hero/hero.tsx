@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/framer-motion/utils";
+import { Suspense } from "react";
+import { BackgroundVideo } from "./background-video";
+import { Loader } from "@/components/loader";
 
 interface HeroProps {
   backgroundType: "video" | "image";
@@ -25,22 +28,16 @@ export const Hero = ({ backgroundType, heading, subheading }: HeroProps) => {
       {backgroundType === "image" ? (
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/80" />
       ) : (
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover filter brightness-50 saturate-150"
-        >
-          <source src="/videos/video-hero.mp4" type="video/mp4" />
-        </video>
+        <Suspense fallback={<Loader />}>
+          <BackgroundVideo />
+        </Suspense>
       )}
       <div className="flex h-full items-end relative z-10">
         <motion.div
           initial="hidden"
           animate="show"
-          className="flex flex-col px-14 gap-y-3 transition-all duration-75 ease-out"
-          variants={fadeIn("right", "spring", 0, 0.5)}
+          className="flex flex-col pl-14 gap-y-3 transition-all duration-75 ease-out"
+          variants={fadeIn("right", "spring", 0.25, 0.75)}
         >
           <h1 className="text-white text-7xl font-bold leading-tight drop-shadow-sm">
             {heading}

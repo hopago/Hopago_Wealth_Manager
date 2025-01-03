@@ -46,9 +46,10 @@ export const ServiceInfo = ({
               ? "w-fit mx-auto text-left"
               : "text-left"
           )}
-          initial="hidden"
-          animate="show"
-          variants={fadeIn("right", "spring", 0, 750)}
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15, duration: 0.75, ease: "easeOut" }}
         >
           {/* 헤더와 서브헤더 */}
           <div className="w-fit h-fit flex items-center gap-1">
@@ -68,7 +69,7 @@ export const ServiceInfo = ({
             title={buttonTitle}
             variant={buttonVariant.variant}
             size={buttonSize.size}
-            className="w-fit mt-5"
+            className="w-fit mt-7"
           />
         )}
       </div>

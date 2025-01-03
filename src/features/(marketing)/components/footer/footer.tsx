@@ -1,9 +1,7 @@
 import Link from "next/link";
-
 import { Code2Icon, GithubIcon } from "lucide-react";
-
-import { navItems, socialItems } from "../../constants";
 import { ContactForm } from "./contact-form";
+import { navItems, socialItems } from "@/constants";
 
 export const Footer = () => {
   return (

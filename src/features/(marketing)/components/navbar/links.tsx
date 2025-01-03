@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { navItems } from "../../constants";
+import { navItems } from "@/constants";
 import { usePathname } from "@/hooks/use-pathname";
 import { cn } from "@/lib/utils";
 

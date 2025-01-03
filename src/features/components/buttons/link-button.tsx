@@ -20,9 +20,7 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
 }) => {
   const router = useRouter();
 
-  const onClick = () => {
-    router.push(url);
-  };
+  const onClick = () => router.push(url);
 
   return (
     <Button
