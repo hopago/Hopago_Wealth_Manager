@@ -2,6 +2,7 @@ import { AboutInfo } from "@/features/(marketing)/about/components/about-info/ab
 import { Marquee } from "@/components/marquee";
 import { Hero } from "@/features/(marketing)/components/hero/hero";
 import { features } from "@/constants";
+import { AboutCTO } from "@/features/(marketing)/about/components/about-ceo/about-cto";
 
 const AboutPage = () => {
   return (
@@ -29,7 +30,7 @@ const AboutPage = () => {
         subTitle={
           <>
             "Hopago Wealth Master"는 <br />
-            자산 관리의 시작과 끝을{" "}
+            자산 관리의 시작과 끝을 <br />
             <span className="text-accent">하나의 플랫폼</span>에서 제공합니다.
           </>
         }
@@ -44,6 +45,7 @@ const AboutPage = () => {
         }
       />
       <Marquee text={features} />
+      <AboutCTO />
     </main>
   );
 };

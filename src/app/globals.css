@@ -229,3 +229,20 @@
     transform: translateX(-50%);
   }
 }
+
+/* Gradient */
+.black-gradient {
+  background: var(--custom-black); 
+
+  background: -webkit-linear-gradient(
+    to right,
+    var(--custom-black-light),
+    var(--custom-black)
+  );
+
+  background: linear-gradient(
+    to right,
+    var(--custom-black-light),
+    var(--custom-black)
+  );
+}

@@ -30,7 +30,7 @@ export const AboutInfo = ({
           <div className="rounded-full w-[12px] h-[12px] bg-[#6A0DAD]" />
           <div className="rounded-full w-[12px] h-[12px] bg-[#D8B4FE]" />
         </div>
-        <h1 className="text-custom-purple-light text-7xl font-bold leading-snug tracking-tight">
+        <h1 className="text-[#D8B4FE] text-7xl font-bold leading-snug tracking-tight">
           {mainTitle}
         </h1>
       </div>

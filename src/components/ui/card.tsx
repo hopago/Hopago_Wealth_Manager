@@ -1,6 +1,12 @@
+'use client'
+
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { Tilt } from "react-tilt";
+import { motion } from "framer-motion";
+import { fadeIn } from "@/lib/framer-motion/utils";
+import Image from "next/image";
 
 const cardVariants = cva("p-8 rounded-md text-center", {
   variants: {
@@ -21,6 +27,14 @@ interface CardProps extends VariantProps<typeof cardVariants> {
   cardTitle: string;
   description: string;
   className?: string;
+}
+
+interface AnimatedCardProps {
+  width?: string;
+  height?: string;
+  index?: number;
+  title: string;
+  imgSrc: string;
 }
 
 export const TextCard = ({
@@ -45,5 +59,49 @@ export const TextCard = ({
     </div>
   ) : (
     <>{content}</>
+  );
+};
+
+export const AnimatedCard = ({
+  width = "100%",
+  height = "250px",
+  index = 0,
+  title,
+  imgSrc,
+}: AnimatedCardProps) => {
+  return (
+    <Tilt
+      className="w-full"
+      tiltMaxAngleX={45}
+      tiltMaxAngleY={45}
+      scale={1.1}
+      transitionSpeed={450}
+    >
+      <motion.div
+        initial="hidden"
+        animate="show"
+        variants={fadeIn(
+          "right",
+          "spring",
+          index > 0 ? 0.25 * index : 0.25,
+          0.75
+        )}
+        className="p-[1px] rounded-[20px] shadow-card green-pink-gradient black-gradient"
+        style={{ width, height }}
+      >
+        <div className="bg-teritary rounded-[20px] py-5 px-12 flex justify-evenly items-center flex-col w-full h-full">
+          <Image
+            src={imgSrc}
+            alt={title}
+            className="object-contain"
+            fill
+            priority
+          />
+          <h3 className="text-custom-white text-[20px] font-bold text-center">
+            {title}
+          </h3>
+        </div>
+      </motion.div>
+    </Tilt>
   );
 };

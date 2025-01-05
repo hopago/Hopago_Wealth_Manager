@@ -5,12 +5,10 @@ interface MarqueeProps {
 export const Marquee = ({ text }: MarqueeProps) => {
   const array = Array.isArray(text)
     ? text
-    : Array.from({ length: 7 }, () => {
-        return text;
-      });
+    : Array.from({ length: 7 }, () => text);
 
   return (
-    <div className="marquee relative w-full overflow-hidden bg-transparent text-custom-gray flex items-center justify-center py-7">
+    <div className="marquee relative w-full overflow-hidden bg-transparent text-custom-gray flex items-center justify-center pb-7">
       <div className="track flex gap-4 whitespace-nowrap">
         {[...array, ...array].map((feature, index) => (
           <span
