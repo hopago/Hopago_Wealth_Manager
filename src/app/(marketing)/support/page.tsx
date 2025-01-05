@@ -5,7 +5,7 @@ const ContactPage = () => {
         <main className="min-h-screen bg-custom-black text-custom-white w-full p-14 pt-[160px] -mb-1">
             <div className="flex justify-between gap-14">
                 <SupportForm />
-                <div className="flex flex-[2_5] flex-col gap-3">
+                <section className="flex flex-[2_5] flex-col gap-3 text-balance">
                     <span className="text-sm font-bold text-[#D8B4FE] tracking-wide">
                         CONTACT
                     </span>
@@ -17,7 +17,7 @@ const ContactPage = () => {
                         <br />
                         빠르고 정확한 답변으로 도와드리겠습니다.
                     </p>
-                </div>
+                </section>
             </div>
         </main>
     )

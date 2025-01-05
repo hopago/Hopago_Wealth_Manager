@@ -5,6 +5,7 @@ import { fadeIn } from "@/lib/framer-motion/utils";
 import { Suspense } from "react";
 import { BackgroundVideo } from "./background-video";
 import { Loader } from "@/components/loader";
+import { FadeIn } from "@/lib/framer-motion/components/fade-in";
 
 interface HeroProps {
   backgroundType: "video" | "image";
@@ -15,13 +16,13 @@ interface HeroProps {
 export const Hero = ({ backgroundType, heading, subheading }: HeroProps) => {
   return (
     <div
-      className="w-full h-screen pt-16 pb-24 bg-cover bg-center relative"
+      className="w-full h-dvh pt-16 pb-24 bg-cover bg-center relative"
       style={
         backgroundType === "image"
           ? {
-              backgroundImage:
-                "url('/images/background/hero_bg_marketing.jpg')",
-            }
+            backgroundImage:
+              "url('/images/background/hero_bg_marketing.jpg')",
+          }
           : {}
       }
     >
@@ -33,11 +34,8 @@ export const Hero = ({ backgroundType, heading, subheading }: HeroProps) => {
         </Suspense>
       )}
       <div className="flex h-full items-end relative z-10">
-        <motion.div
-          initial="hidden"
-          animate="show"
+        <FadeIn
           className="flex flex-col pl-14 gap-y-3 transition-all duration-75 ease-out"
-          variants={fadeIn("right", "spring", 0.25, 0.75)}
         >
           <h1 className="text-white text-7xl font-bold leading-tight drop-shadow-sm">
             {heading}
@@ -45,7 +43,7 @@ export const Hero = ({ backgroundType, heading, subheading }: HeroProps) => {
           <p className="text-[#E0E0E0] text-3xl leading-relaxed text-balance">
             {subheading}
           </p>
-        </motion.div>
+        </FadeIn>
       </div>
     </div>
   );

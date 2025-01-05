@@ -26,6 +26,8 @@ import { CameraIcon } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 
 export const SupportForm = () => {
+  // TODO: 이미지 미리보기, 자주 묻는 질문 섹션
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,7 +43,7 @@ export const SupportForm = () => {
   };
 
   return (
-    <div className="flex-[3_5]">
+    <section className="flex-[3_5]">
       <div className="w-full flex flex-col gap-6">
         <Form {...form}>
           <FormField
@@ -183,6 +185,6 @@ export const SupportForm = () => {
           </Button>
         </Form>
       </div>
-    </div>
+    </section>
   );
 };

@@ -1,7 +1,7 @@
 import { Variants } from "framer-motion";
 
-type Direction = "left" | "right" | "up" | "down";
-type TransitionType = "spring" | "tween";
+export type Direction = "left" | "right" | "up" | "down";
+export type TransitionType = "spring" | "tween";
 
 export const navVariants: Variants = {
   hidden: {
