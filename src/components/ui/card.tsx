@@ -1,12 +1,12 @@
 'use client'
 
+import Image from "next/image";
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/framer-motion/utils";
-import Image from "next/image";
 
 const cardVariants = cva("p-8 rounded-md text-center", {
   variants: {
@@ -30,11 +30,12 @@ interface CardProps extends VariantProps<typeof cardVariants> {
 }
 
 interface AnimatedCardProps {
-  width?: string;
-  height?: string;
+  width?: number;
+  height?: number;
   index?: number;
   title: string;
   imgSrc: string;
+  className?: string;
 }
 
 export const TextCard = ({
@@ -63,11 +64,12 @@ export const TextCard = ({
 };
 
 export const AnimatedCard = ({
-  width = "100%",
-  height = "250px",
+  width = 250,
+  height = 250,
   index = 0,
   title,
   imgSrc,
+  className,
 }: AnimatedCardProps) => {
   return (
     <Tilt
@@ -87,14 +89,14 @@ export const AnimatedCard = ({
           0.75
         )}
         className="p-[1px] rounded-[20px] shadow-card green-pink-gradient black-gradient"
-        style={{ width, height }}
       >
         <div className="bg-teritary rounded-[20px] py-5 px-12 flex justify-evenly items-center flex-col w-full h-full">
           <Image
             src={imgSrc}
             alt={title}
-            className="object-contain"
-            fill
+            className={cn("object-contain object-center", className)}
+            width={width}
+            height={height}
             priority
           />
           <h3 className="text-custom-white text-[20px] font-bold text-center">

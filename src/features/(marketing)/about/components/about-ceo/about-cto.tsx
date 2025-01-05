@@ -17,7 +17,7 @@ export const AboutCTO = () => {
             프론트엔드 및 풀스택 개발로 전향한 신입 개발자입니다. React, Next.js, Node.js, MongoDB 등 최신 기술 스택을 활용해 성능 최적화와 확장 가능한 아키텍처를 설계했습니다.
             <br />
             대표 프로젝트에서 <strong>PageSpeed Insights 99점</strong> 달성,{" "}
-            <strong>데이터 처리 속도 50%</strong> 개선, 코드 재사용성을 30% 이상 향상시킨 경험이 있습니다.
+            <strong>데이터 처리 속도 50%</strong> 개선, <strong>코드 재사용성을 30% 이상</strong> 향상시킨 경험이 있습니다.
           </p>
         </div>
         <div className="flex justify-between gap-5">
@@ -41,7 +41,9 @@ export const AboutCTO = () => {
                 <AnimatedCard
                   title="Hommerce"
                   imgSrc="/images/hommerce.png"
-                  width="100%"
+                  width={100}
+                  height={100}
+                  className="rounded-full"
                 />
               </Link>
             </div>

@@ -3,6 +3,7 @@ import { Marquee } from "@/components/marquee";
 import { Hero } from "@/features/(marketing)/components/hero/hero";
 import { features } from "@/constants";
 import { AboutCTO } from "@/features/(marketing)/about/components/about-ceo/about-cto";
+import { Banner } from "@/features/(marketing)/about/components/banner/banner";
 
 const AboutPage = () => {
   return (
@@ -46,6 +47,7 @@ const AboutPage = () => {
       />
       <Marquee text={features} />
       <AboutCTO />
+      <Banner />
     </main>
   );
 };
