@@ -5,7 +5,7 @@ import { navItems, socialItems } from "@/constants";
 
 export const Footer = () => {
   return (
-    <footer className="w-full h-max pt-16 pb-11 bg-custom-black text-custom-white text-shadow-custom-white">
+    <footer className="w-full h-full pt-16 pb-11 bg-custom-black text-custom-white text-shadow-custom-white">
       <div className="flex justify-between w-full px-14">
         <ContactForm />
         <div className="flex items-center gap-x-7">

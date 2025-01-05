@@ -62,7 +62,7 @@ export const navItems = [
   },
   {
     label: "문의하기",
-    href: "/contact",
+    href: "/support",
   },
 ];
 

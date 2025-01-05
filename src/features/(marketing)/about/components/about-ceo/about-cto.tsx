@@ -11,7 +11,7 @@ export const AboutCTO = () => {
       <div className="flex-[3_5] flex flex-col gap-7">
         <div className="w-full flex flex-col gap-3">
           <h2 className="text-7xl font-bold text-[#D8B4FE]">
-            "항상, 매일하는 CTO"
+            "About CTO, 최호준"
           </h2>
           <p className="text-lg text-custom-white leading-relaxed text-balance">
             프론트엔드 및 풀스택 개발로 전향한 신입 개발자입니다. React, Next.js, Node.js, MongoDB 등 최신 기술 스택을 활용해 성능 최적화와 확장 가능한 아키텍처를 설계했습니다.

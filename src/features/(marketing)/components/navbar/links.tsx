@@ -19,6 +19,7 @@ export const Links = () => {
                 href={el.href}
                 className="relative group"
                 aria-current={active ? "page" : undefined}
+                scroll={true}
               >
                 <span className="relative z-10">{el.label}</span>
                 <span

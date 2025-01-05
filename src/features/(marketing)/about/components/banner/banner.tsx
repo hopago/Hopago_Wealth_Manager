@@ -15,7 +15,7 @@ export const Banner = () => {
                     <span className="text-custom-purple-light">지금 바로 시작하세요</span>
                 </h1>
                 <p className="text-lg text-custom-gray leading-relaxed">
-                    Hopago Wealth Manager로 간단하고 체계적인 자산 관리를 경험해보세요.
+                    Hopago Wealth Master로 간단하고 체계적인 자산 관리를 경험해보세요.
                 </p>
                 <LinkButton
                     title="시작하기"
