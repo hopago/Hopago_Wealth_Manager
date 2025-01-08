@@ -57,7 +57,7 @@ export const AboutCTO = () => {
               >
                 <AnimatedCard
                   title="Hommerce"
-                  imgSrc="/images/hommerce.png"
+                  imgSrc="/image/hommerce.png"
                   width={100}
                   height={100}
                   className="rounded-full"
@@ -69,7 +69,7 @@ export const AboutCTO = () => {
       </div>
       <div className="flex-[2_5] h-[600px] my-auto relative rounded-[20px] overflow-hidden">
         <Image
-          src="/images/cto/hopago.jpg"
+          src="/image/cto/hopago.jpg"
           className="object-contain"
           alt="Hopago"
           priority

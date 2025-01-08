@@ -20,9 +20,8 @@ export const Hero = ({ backgroundType, heading, subheading }: HeroProps) => {
       style={
         backgroundType === "image"
           ? {
-            backgroundImage:
-              "url('/images/background/hero_bg_marketing.jpg')",
-          }
+              backgroundImage: "url('/image/background/hero_bg_marketing.jpg')",
+            }
           : {}
       }
     >
@@ -34,9 +33,7 @@ export const Hero = ({ backgroundType, heading, subheading }: HeroProps) => {
         </Suspense>
       )}
       <div className="flex h-full items-end relative z-10">
-        <FadeIn
-          className="flex flex-col pl-14 gap-y-3 transition-all duration-75 ease-out"
-        >
+        <FadeIn className="flex flex-col pl-14 gap-y-3 transition-all duration-75 ease-out">
           <h1 className="text-white text-7xl font-bold leading-tight drop-shadow-sm">
             {heading}
           </h1>

@@ -5,7 +5,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { GLTFResult } from "../types";
 
 type UsePointerProps = {
-  scene: string;
+  path: string;
   lastX: React.MutableRefObject<number>;
   rotationSpeed: React.MutableRefObject<number>;
   ref: React.RefObject<THREE.Group>;
@@ -17,12 +17,12 @@ export const usePointer = ({
   ref,
   lastX,
   rotationSpeed,
-  scene,
+  path,
   isRotating,
   setIsRotating,
 }: UsePointerProps) => {
   const { gl, viewport } = useThree();
-  const { nodes, materials } = useGLTF(scene) as GLTFResult;
+  const { nodes, materials } = useGLTF(path) as GLTFResult;
 
   const dampingFactor = 0.95;
   const autoRotationSpeed = 0.01;

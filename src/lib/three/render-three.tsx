@@ -4,13 +4,13 @@ import { lazy, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import { Loader } from "@/components/loader";
-import Background from "./models/bg";
+import Background from "./components/bg";
 import { adjustModelForScreenSize } from "./utils/adjust-model-for-screen";
-import Computer from "./models/computer";
 import { ModelName } from "./types";
-import Bitcoin from "./models/bitcoin";
 
-const Lamp = lazy(() => import("./models/lamp"));
+const Lamp = lazy(() => import("./components/lamp"));
+const Computer = lazy(() => import("./components/computer"));
+const Bitcoin = lazy(() => import("./components/bitcoin"));
 
 export interface RenderThreeProps {
   name: ModelName;
