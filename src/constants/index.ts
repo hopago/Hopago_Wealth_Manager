@@ -14,8 +14,20 @@ export type ServiceInfoItem = {
   buttonSize?: Pick<VariantProps<typeof buttonVariants>, "size">;
 };
 
+export const ACCEPTED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/png",
+  "image/gif",
+  "image/webp",
+  "image/bmp",
+  "image/svg+xml",
+];
+
 export const SCREEN_SIZE = {
+  SM: 640,
   MD: 768,
+  LG: 1024,
+  XL: 1280,
 };
 
 export const SERVICE_INFOS: ServiceInfoItem[] = [

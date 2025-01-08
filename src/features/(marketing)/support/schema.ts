@@ -1,5 +1,5 @@
 import * as z from "zod";
-import { ACCEPTED_IMAGE_TYPES } from "@/types";
+import { ACCEPTED_IMAGE_TYPES } from "@/constants";
 
 export const formSchema = z.object({
   category: z.string().nonempty({ message: "문의 내용을 선택해주세요" }),
@@ -8,11 +8,15 @@ export const formSchema = z.object({
   description: z
     .string()
     .min(10, { message: "문의 내용을 10자 이상 작성해주세요" }),
-  image: z
-    .instanceof(File)
+  images: z
+    .array(z.instanceof(File))
     .optional()
-    .nullable()
-    .refine((file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type), {
-      message: "이미지는 JPEG 또는 PNG 형식만 지원됩니다",
-    }),
+    .refine(
+      (files) =>
+        !files?.length ||
+        files.every((file) => ACCEPTED_IMAGE_TYPES.includes(file.type)),
+      {
+        message: "이미지는 JPEG 또는 PNG 형식만 지원됩니다",
+      }
+    ),
 });
