@@ -1,9 +1,9 @@
 import { useGLTF } from "@react-three/drei";
 
 const Background = ({ path, ...props }: { path: string }) => {
-  if (!path) return null;
-
   const bg = useGLTF(path);
+
+  if (!path) return null;
 
   return (
     <mesh {...props}>

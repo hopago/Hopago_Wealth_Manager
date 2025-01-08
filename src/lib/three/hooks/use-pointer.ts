@@ -57,7 +57,7 @@ export const usePointer = ({
       canvas.removeEventListener("pointermove", handlePointerMove);
       canvas.removeEventListener("pointerup", handlePointerUp);
     };
-  }, [gl, isRotating]);
+  }, [gl, isRotating, handlePointerDown, handlePointerMove, handlePointerUp]);
 
   useFrame(() => {
     if (ref.current) {

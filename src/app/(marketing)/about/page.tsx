@@ -30,7 +30,7 @@ const AboutPage = () => {
         }
         subTitle={
           <>
-            "Hopago Wealth Master"는 <br />
+            Hopago Wealth Master는 <br />
             자산 관리의 시작과 끝을 <br />
             <span className="text-accent">하나의 플랫폼</span>에서 제공합니다.
           </>
