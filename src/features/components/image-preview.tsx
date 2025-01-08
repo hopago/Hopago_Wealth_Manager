@@ -19,7 +19,7 @@ export const ImagePreview = ({
 
   return (
     <div
-      className="relative rounded-[20px] overflow-hidden cursor-pointer"
+      className="relative rounded-md overflow-hidden cursor-pointer"
       style={{ width, height }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
@@ -32,7 +32,7 @@ export const ImagePreview = ({
         key={file.name}
         src={URL.createObjectURL(file)}
         alt="uploaded_image"
-        className="w-full h-full object-cover rounded-[20px]"
+        className="w-full h-full object-cover"
         fill
       />
 

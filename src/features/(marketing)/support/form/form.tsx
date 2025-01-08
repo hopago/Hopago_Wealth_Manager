@@ -145,7 +145,7 @@ export const SupportForm = () => {
             render={({ field }) => (
               <>
                 {field.value ? (
-                  <div className="flex gap-3 flex-wrap items-center justify-center border bg-custom-black-light border-gray-100 py-7 rounded-[20px]">
+                  <div className="flex gap-3 flex-wrap items-center justify-center border bg-custom-black-light border-gray-100 py-7 rounded-md">
                     {field.value.map((file) => (
                       <ImagePreview
                         key={file.name}
