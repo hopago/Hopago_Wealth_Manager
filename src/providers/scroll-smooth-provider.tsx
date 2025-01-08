@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import { gsap } from "gsap";
 
@@ -23,7 +22,11 @@ export const ScrollSmoothProvider: React.FC<ScrollSmoothProviderProps> = ({
 
     let scroll: LocomotiveScroll | null = null;
 
-    const initializeScroll = () => {
+    const initializeScroll = async () => {
+      const { default: LocomotiveScroll } = await import("locomotive-scroll", {
+        with: {},
+      });
+
       scroll = new LocomotiveScroll({
         el: scrollContainerRef.current ?? undefined,
         smooth: true,
