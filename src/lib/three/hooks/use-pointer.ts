@@ -22,7 +22,7 @@ export const usePointer = ({
   setIsRotating,
 }: UsePointerProps) => {
   const { gl, viewport } = useThree();
-  const { nodes, materials } = useGLTF(path) as GLTFResult;
+  const { nodes, materials, scene } = useGLTF(path) as GLTFResult;
 
   const dampingFactor = 0.95;
   const autoRotationSpeed = 0.01;
@@ -75,7 +75,6 @@ export const usePointer = ({
   });
 
   return {
-    nodes,
-    materials,
+    scene,
   };
 };

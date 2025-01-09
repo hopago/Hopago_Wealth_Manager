@@ -2,9 +2,8 @@
 
 import { lazy, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
+import { Center, Html, Preload } from "@react-three/drei";
 import { Loader } from "@/components/loader";
-import Background from "./components/bg";
 import { adjustModelForScreenSize } from "./utils/adjust-model-for-screen";
 import { ModelName } from "./types";
 
@@ -51,8 +50,8 @@ const RenderThree = ({ name }: RenderThreeProps) => {
           groundColor="#FFFFFF"
           intensity={0.5}
         />
-        <Background path="" />
-        {content}
+        {content && content}
+        <Preload all />
       </Suspense>
     </Canvas>
   );

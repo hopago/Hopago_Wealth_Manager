@@ -1,7 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { usePointer } from "../hooks/use-pointer";
-import { useGLTF } from "@react-three/drei";
 
 export default function Computer() {
   const [isRotating, setIsRotating] = useState(false);
@@ -9,19 +8,28 @@ export default function Computer() {
   const lastX = useRef(0);
   const rotationSpeed = useRef(0);
 
-  const { nodes, materials } = usePointer({
+  const { scene } = usePointer({
     ref,
     lastX,
     rotationSpeed,
     isRotating,
     setIsRotating,
-    path: "/models/computer.glb",
+    path: "/model/computer.glb",
   });
 
   const Computer = useMemo(() => {
     return (
-      <group ref={ref} dispose={null}>
-        <group scale={0.13}>
+      <group ref={ref} dispose={null} position={[21, 7, 42]} scale={7}>
+        <primitive object={scene} />
+      </group>
+    );
+  }, [scene]);
+
+  return Computer;
+}
+
+{
+  /** <group scale={0.13}>
           <group
             position={[0, 28.869, 312.193]}
             rotation={[-1.469, 0, 0]}
@@ -76,12 +84,5 @@ export default function Computer() {
               material={materials.metal_1}
             />
           </group>
-        </group>
-      </group>
-    );
-  }, [nodes, materials]);
-
-  return Computer;
+        </group> */
 }
-
-useGLTF.preload("/models/computer.glb");

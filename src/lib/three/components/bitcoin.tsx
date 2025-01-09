@@ -1,7 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { usePointer } from "../hooks/use-pointer";
-import { useGLTF } from "@react-three/drei";
 
 export default function Bitcoin() {
   const [isRotating, setIsRotating] = useState(false);
@@ -9,30 +8,22 @@ export default function Bitcoin() {
   const lastX = useRef(0);
   const rotationSpeed = useRef(0);
 
-  const { nodes, materials } = usePointer({
+  const { scene } = usePointer({
     ref,
     lastX,
     rotationSpeed,
     isRotating,
     setIsRotating,
-    path: "/models/bitcoin.glb",
+    path: "/model/bitcoin.glb",
   });
 
   const Bitcoin = useMemo(() => {
     return (
-      <group ref={ref} dispose={null}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Cylinder002__0.geometry}
-          material={materials["Scene_-_Root"]}
-          position={[3.489, 22.23, -11.294]}
-        />
+      <group ref={ref} dispose={null} position={[14, 0, 42]} scale={0.5}>
+        <primitive object={scene} />
       </group>
     );
-  }, [nodes, materials]);
+  }, [scene]);
 
   return Bitcoin;
 }
-
-useGLTF.preload("/models/bitcoin.glb");

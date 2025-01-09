@@ -55,8 +55,6 @@ export const ScrollSmoothProvider: React.FC<ScrollSmoothProviderProps> = ({
     };
   }, [pathname]);
 
-  if (typeof window === "undefined") return null;
-
   return (
     <div ref={scrollContainerRef} data-scroll-container>
       {children}

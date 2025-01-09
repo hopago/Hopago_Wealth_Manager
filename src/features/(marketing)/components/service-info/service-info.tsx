@@ -27,7 +27,7 @@ export const ServiceInfo = ({
   return (
     <section
       className={cn(
-        "flex items-center justify-between py-7 px-24 h-[600px] w-full",
+        "flex items-center justify-between py-7 px-24 h-[600px] w-full gap-3",
         className
       )}
     >
@@ -40,9 +40,11 @@ export const ServiceInfo = ({
       <div className="flex-1 h-full relative flex flex-col justify-center">
         <SlideUp
           delay={0.375}
-          className={className?.includes("flex-row-reverse")
-            ? "w-fit mx-auto text-left"
-            : "text-left"}
+          className={
+            className?.includes("flex-row-reverse")
+              ? "w-fit mx-auto text-left"
+              : "text-left"
+          }
         >
           {/* 헤더와 서브헤더 */}
           <div className="w-fit h-fit flex items-center gap-1">
