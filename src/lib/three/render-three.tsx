@@ -2,14 +2,12 @@
 
 import { lazy, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Center, Html, Preload } from "@react-three/drei";
+import { Html, Preload } from "@react-three/drei";
 import { Loader } from "@/components/loader";
 import { adjustModelForScreenSize } from "./utils/adjust-model-for-screen";
 import { ModelName } from "./types";
 
-const Lamp = lazy(() => import("./components/lamp"));
-const Computer = lazy(() => import("./components/computer"));
-const Bitcoin = lazy(() => import("./components/bitcoin"));
+const Model = lazy(() => import("./components/model"));
 
 export interface RenderThreeProps {
   name: ModelName;
@@ -20,16 +18,6 @@ const RenderThree = ({ name }: RenderThreeProps) => {
     screenPosition: [42, 21, 84],
     rotation: [0, Math.PI / 7.7, 0],
   });
-
-  let content: JSX.Element | undefined;
-
-  if (name === "lamp") {
-    content = <Lamp />;
-  } else if (name === "computer") {
-    content = <Computer />;
-  } else if (name === "bitcoin") {
-    content = <Bitcoin />;
-  }
 
   return (
     <Canvas
@@ -50,7 +38,7 @@ const RenderThree = ({ name }: RenderThreeProps) => {
           groundColor="#FFFFFF"
           intensity={0.5}
         />
-        {content && content}
+        <Model name={name} />
         <Preload all />
       </Suspense>
     </Canvas>

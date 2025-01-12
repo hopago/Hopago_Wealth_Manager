@@ -1,7 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { usePointer } from "../hooks/use-pointer";
-import { adjustModelForScreenSize } from "../utils/adjust-model-for-screen";
 
 export default function Lamp() {
   const [isRotating, setIsRotating] = useState(false);
@@ -27,15 +26,4 @@ export default function Lamp() {
   }, [scene]);
 
   return Lamp;
-}
-
-{
-  /**
-  <mesh
-          geometry={nodes.Object_5.geometry}
-          material={materials.Particles}
-        />
-        <mesh geometry={nodes.Object_6.geometry} material={materials.Lampe} />
-        <mesh geometry={nodes.Object_7.geometry} material={materials.Panneau} />
-        <mesh geometry={nodes.Object_8.geometry} material={materials.Parquet} /> */
 }
