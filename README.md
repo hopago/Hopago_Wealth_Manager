@@ -2,7 +2,6 @@
 
 **프론트엔드**
 
-
 - React
 - Next.js
 - Typescript
@@ -10,5 +9,6 @@
 - Framer Motion
 - Three.js
 - Zod
+- Shadcn/ui
 
-현재 PREVIEW 형태로 완전한 배포 버전이 아닙니다
+현재 진행 중인 프로젝트 입니다

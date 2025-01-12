@@ -25,9 +25,11 @@ import { Button } from "@/components/ui/button";
 import { CameraIcon } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { ImagePreview } from "@/features/components/image-preview";
+import { useRef } from "react";
 
 export const SupportForm = () => {
-  // TODO: 자주 묻는 질문 섹션
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,10 +40,15 @@ export const SupportForm = () => {
     },
   });
 
+  const onSubmit = (values: z.infer<typeof formSchema>) => {};
+
   return (
     <section className="flex-[3_5]">
-      <div className="w-full flex flex-col gap-6">
-        <Form {...form}>
+      <Form {...form}>
+        <form
+          className="w-full flex flex-col gap-6"
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
           <FormField
             control={form.control}
             name="category"
@@ -143,17 +150,7 @@ export const SupportForm = () => {
                 {field.value && field.value.length > 0 ? (
                   <div className="flex gap-3 flex-wrap items-center justify-center border bg-custom-black-light border-gray-100 py-7 rounded-md">
                     {field.value.map((file) => (
-                      <ImagePreview
-                        key={file.name}
-                        file={file}
-                        onClick={() => {
-                          if (field.value) {
-                            field.onChange(
-                              field.value.filter((f) => f.name !== file.name)
-                            );
-                          }
-                        }}
-                      />
+                      <ImagePreview key={file.name} file={file} field={field} />
                     ))}
                   </div>
                 ) : (
@@ -168,11 +165,14 @@ export const SupportForm = () => {
                       <FormDescription className="text-sm text-center text-balance text-custom-gray">
                         카메라 아이콘을 클릭하여 파일을 추가해 더 정확한 문제를
                         전달해 보세요.
+                        <br />
+                        이미지는 최대 5개까지 첨부 가능합니다.
                       </FormDescription>
                     </div>
                     <FormControl>
                       <Input
                         id="support-image"
+                        ref={inputRef}
                         className="hidden"
                         aria-label="add_image"
                         multiple
@@ -190,7 +190,6 @@ export const SupportForm = () => {
             )}
           />
 
-          {/* 제출 버튼 */}
           <Button
             type="submit"
             variant="white"
@@ -199,8 +198,8 @@ export const SupportForm = () => {
           >
             문의하기
           </Button>
-        </Form>
-      </div>
+        </form>
+      </Form>
     </section>
   );
 };

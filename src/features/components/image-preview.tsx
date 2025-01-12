@@ -1,21 +1,56 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { ControllerRenderProps } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 
 interface ImagePreviewProps {
   file: File;
-  onClick: () => void;
+  field: ControllerRenderProps<
+    {
+      category: string;
+      email: string;
+      title: string;
+      description: string;
+      images?: File[] | undefined;
+    },
+    "images"
+  >;
   width?: string;
   height?: string;
 }
 
 export const ImagePreview = ({
   file,
-  onClick,
+  field,
   width = "240px",
   height = "150px",
 }: ImagePreviewProps) => {
+  // TODO: Hover 이벤트 깜빡임 -> setTimeOut 처리
   const [hover, setHover] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const onClickRemove = () => {
+    if (field.value) {
+      field.onChange(field.value.filter((f) => f.name !== file.name));
+    }
+  };
+
+  const onClickChange = () => {
+    if (inputRef.current) {
+      inputRef.current.click();
+    }
+  };
+
+  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files[0]) {
+      if (field.value) {
+        field.onChange(
+          field.value.map((f) => (f.name === file.name ? files[0] : f))
+        );
+      }
+    }
+  };
 
   return (
     <div
@@ -37,20 +72,33 @@ export const ImagePreview = ({
       />
 
       {hover && (
-        <div className="absolute inset-0 flex items-center justify-center gap-3 z-20">
-          <Button type="button" variant="secondary" size="sm">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 z-20">
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
+            onClick={onClickChange}
+          >
             이미지 변경
           </Button>
           <Button
             type="button"
             variant="destructive"
             size="sm"
-            onClick={onClick}
+            onClick={onClickRemove}
           >
             이미지 제거
           </Button>
         </div>
       )}
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        style={{ display: "none" }}
+        onChange={onFileChange}
+      />
     </div>
   );
 };
