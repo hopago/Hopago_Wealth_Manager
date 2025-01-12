@@ -27,7 +27,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ImagePreview } from "@/features/components/image-preview";
 
 export const SupportForm = () => {
-  // TODO: 이미지 미리보기, 자주 묻는 질문 섹션
+  // TODO: 자주 묻는 질문 섹션
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,10 +37,6 @@ export const SupportForm = () => {
       images: undefined,
     },
   });
-
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
-  };
 
   return (
     <section className="flex-[3_5]">
@@ -144,7 +140,7 @@ export const SupportForm = () => {
             name="images"
             render={({ field }) => (
               <>
-                {field.value ? (
+                {field.value && field.value.length > 0 ? (
                   <div className="flex gap-3 flex-wrap items-center justify-center border bg-custom-black-light border-gray-100 py-7 rounded-md">
                     {field.value.map((file) => (
                       <ImagePreview
@@ -172,8 +168,6 @@ export const SupportForm = () => {
                       <FormDescription className="text-sm text-center text-balance text-custom-gray">
                         카메라 아이콘을 클릭하여 파일을 추가해 더 정확한 문제를
                         전달해 보세요.
-                        <br />
-                        최대 1개의 이미지를 업로드할 수 있습니다.
                       </FormDescription>
                     </div>
                     <FormControl>

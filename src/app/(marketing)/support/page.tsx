@@ -1,9 +1,10 @@
+import { Faqs } from "@/features/(marketing)/support/faqs/faqs";
 import { SupportForm } from "@/features/(marketing)/support/form/form";
 
 const SupportPage = () => {
   return (
-    <div className="min-h-screen bg-custom-black text-custom-white w-full p-14 pt-[160px] -mb-1">
-      <main className="flex justify-between gap-14">
+    <main className="min-h-screen bg-custom-black text-custom-white w-full p-14 pt-[160px] -mb-1">
+      <div className="flex justify-between gap-14">
         <SupportForm />
         <section className="flex flex-[2_5] flex-col gap-3 text-balance">
           <span className="text-sm font-bold text-[#D8B4FE] tracking-wide">
@@ -18,8 +19,9 @@ const SupportPage = () => {
             빠르고 정확한 답변으로 도와드리겠습니다.
           </p>
         </section>
-      </main>
-    </div>
+      </div>
+      <Faqs />
+    </main>
   );
 };
 
