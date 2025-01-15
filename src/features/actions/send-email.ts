@@ -2,7 +2,6 @@
 
 import nodemailer from "nodemailer";
 import { Attachment } from "nodemailer/lib/mailer";
-import { formSchema } from "../(marketing)/support/schema";
 
 export type MailOption = {
   to: string;
@@ -32,25 +31,54 @@ export default async function sendEmail(formData: FormData) {
 
   const attachments: Attachment[] | undefined = images
     ? await Promise.all(
-        images.map(async (file, index) => ({
-          filename: `image-${index + 1}`,
-          content: Buffer.from(await file.arrayBuffer()),
-          contentType: file.type,
-          cid: `image-${index + 1}`,
-        }))
+        images.map(async (file, index) => {
+          if (file.type === "image/svg+xml") {
+            const svgContent = await file.text();
+            return {
+              filename: `image-${index + 1}.svg`,
+              content: svgContent,
+              contentType: file.type,
+              cid: `image-${index + 1}`,
+            };
+          }
+
+          return {
+            filename: `image-${index + 1}`,
+            content: Buffer.from(await file.arrayBuffer()),
+            contentType: file.type,
+            cid: `image-${index + 1}`,
+          };
+        })
       )
     : undefined;
 
   const imageTags = images
-    ?.map(
-      (_, index) => `
-    <img 
-      src="cid:image-${index + 1}" 
-      alt="첨부 이미지 ${index + 1}" 
-      style="max-width: 100%; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 8px;" 
-    />
-  `
-    )
+    ?.map((file, index) => {
+      if (file.type === "image/svg+xml") {
+        return `
+          <div style="margin-bottom: 10px;">
+            <img 
+              src="cid:image-${index + 1}" 
+              alt="첨부 이미지 ${index + 1}" 
+              style="max-width: 100%; border: 1px solid #ccc; border-radius: 8px;" 
+            />
+            <p style="font-size: 12px; color: #666;">첨부 이미지 ${
+              index + 1
+            } (SVG)</p>
+          </div>
+        `;
+      }
+      return `
+        <div style="margin-bottom: 10px;">
+          <img 
+            src="cid:image-${index + 1}" 
+            alt="첨부 이미지 ${index + 1}" 
+            style="max-width: 100%; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 8px;" 
+          />
+          <p style="font-size: 12px; color: #666;">첨부 이미지 ${index + 1}</p>
+        </div>
+      `;
+    })
     .join("");
 
   const mailOptions: MailOption = {
