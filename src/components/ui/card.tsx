@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Image from "next/image";
 import * as React from "react";
@@ -27,6 +27,7 @@ interface CardProps extends VariantProps<typeof cardVariants> {
   cardTitle: string;
   description: string;
   className?: string;
+  articleClassName?: string;
 }
 
 interface AnimatedCardProps {
@@ -45,16 +46,22 @@ export const TextCard = ({
   description,
   variant,
   className,
+  articleClassName,
 }: CardProps) => {
   const content = (
-    <article className={cn(cardVariants({ variant }), className)}>
+    <article className={cn(cardVariants({ variant }), articleClassName)}>
       <h3 className="font-bold text-2xl">{cardTitle}</h3>
       <p className="mt-4 text-xl text-muted-foreground">{description}</p>
     </article>
   );
 
   return hasTitle ? (
-    <div className="w-full flex items-center justify-center flex-col gap-5 py-7 text-center">
+    <div
+      className={cn(
+        "w-full flex items-center justify-center flex-col gap-5 py-7 text-center",
+        className
+      )}
+    >
       <h2 className="font-bold text-4xl text-custom-white mb-5">{title}</h2>
       {content}
     </div>

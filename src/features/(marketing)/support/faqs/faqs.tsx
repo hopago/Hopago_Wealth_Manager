@@ -7,7 +7,7 @@ import {
 
 export const Faqs = () => {
   return (
-    <div className="w-full flex pt-32 pb-7 gap-5">
+    <div className="w-full flex pt-32 pb-5 gap-5">
       <div className="flex-[2_5]">
         <h1 className="text-5xl font-bold mb-4">자주 묻는 질문</h1>
         <p
