@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import ToastProvider from "@/providers/toast-provider";
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -45,7 +46,9 @@ export default function RootLayout({
         sizes="16x16"
         href="/favicon/favicon-16x16.png"
       />
-      <body className={`${roboto.className}`}>{children}</body>
+      <body className={`${roboto.className}`}>
+        <ToastProvider>{children}</ToastProvider>
+      </body>
     </html>
   );
 }

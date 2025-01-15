@@ -48,7 +48,7 @@ export const SERVICE_INFOS: ServiceInfoItem[] = [
     modelName: "computer",
     hasButton: true,
     buttonTitle: "자세히 알아보기",
-    buttonUrl: "/how-it-works/stock",
+    buttonUrl: "/how-it-works",
     className: "flex-row-reverse",
   },
   {
@@ -58,7 +58,7 @@ export const SERVICE_INFOS: ServiceInfoItem[] = [
     modelName: "bitcoin",
     hasButton: true,
     buttonTitle: "자세히 알아보기",
-    buttonUrl: "/how-it-works/crypto",
+    buttonUrl: "/how-it-works",
     className: "",
   },
 ];
