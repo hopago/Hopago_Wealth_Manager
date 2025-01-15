@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -25,7 +26,6 @@ import { Button } from "@/components/ui/button";
 import { CameraIcon } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { ImagePreview } from "@/features/components/image-preview";
-import { useRef } from "react";
 
 export const SupportForm = () => {
   const inputRef = useRef<HTMLInputElement>(null);

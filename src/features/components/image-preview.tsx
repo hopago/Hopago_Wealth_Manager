@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { ControllerRenderProps } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 
@@ -15,8 +15,8 @@ interface ImagePreviewProps {
     },
     "images"
   >;
-  width?: string;
-  height?: string;
+  width?: string | number;
+  height?: string | number;
 }
 
 export const ImagePreview = ({
@@ -25,7 +25,6 @@ export const ImagePreview = ({
   width = "240px",
   height = "150px",
 }: ImagePreviewProps) => {
-  // TODO: Hover 이벤트 깜빡임 -> setTimeOut 처리
   const [hover, setHover] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -43,12 +42,10 @@ export const ImagePreview = ({
 
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
-    if (files && files[0]) {
-      if (field.value) {
-        field.onChange(
-          field.value.map((f) => (f.name === file.name ? files[0] : f))
-        );
-      }
+    if (files && files[0] && field.value) {
+      field.onChange(
+        field.value.map((f) => (f.name === file.name ? files[0] : f))
+      );
     }
   };
 
@@ -60,14 +57,13 @@ export const ImagePreview = ({
       onMouseLeave={() => setHover(false)}
     >
       {hover && (
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10"></div>
+        <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10" />
       )}
 
       <Image
-        key={file.name}
         src={URL.createObjectURL(file)}
         alt="uploaded_image"
-        className="w-full h-full object-cover"
+        className="object-cover"
         fill
       />
 
