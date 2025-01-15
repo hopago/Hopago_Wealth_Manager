@@ -26,6 +26,7 @@ import { Button } from "@/components/ui/button";
 import { CameraIcon } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { ImagePreview } from "@/features/components/image-preview";
+import sendEmail from "@/features/actions/send-email";
 
 export const SupportForm = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -40,7 +41,40 @@ export const SupportForm = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {};
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const validateFields = await formSchema.safeParseAsync(values);
+    if (!validateFields.success) {
+      return {
+        errors: validateFields.error.flatten().fieldErrors,
+      };
+    }
+
+    const formData = new FormData();
+    Object.entries(values).forEach(([key, value]) => {
+      const isText =
+        typeof key === "string" &&
+        typeof value === "string" &&
+        key !== "images";
+
+      if (isText) {
+        formData.append(key, value);
+      } else {
+        values.images?.forEach((file) => {
+          formData.append("images", file);
+        });
+      }
+    });
+
+    try {
+      const { success, errors } = await sendEmail(formData);
+      if (success) {
+      } else if (errors) {
+        console.log(errors);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <section className="flex-[3_5]">

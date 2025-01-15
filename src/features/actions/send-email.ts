@@ -7,8 +7,9 @@ import { formSchema } from "../(marketing)/support/schema";
 export type MailOption = {
   to: string;
   from: string;
-  description: string;
-  attachments?: Attachment[];
+  subject: string;
+  category: string;
+  attachments: Attachment[] | undefined;
   html: string;
 };
 
@@ -23,26 +24,50 @@ const transporter = nodemailer.createTransport({
 });
 
 export default async function sendEmail(formData: FormData) {
-  const validateFields = await formSchema.safeParseAsync(formData);
-  if (!validateFields.success) {
-    return {
-      errors: validateFields.error.flatten().fieldErrors,
-    };
-  }
+  const email = formData.get("email") as string | null;
+  const category = formData.get("category");
+  const images = formData.getAll("images") as File[] | null;
+  const title = formData.get("title") as string | null;
+  const description = formData.get("description");
+
+  const attachments: Attachment[] | undefined = images
+    ? await Promise.all(
+        images.map(async (file, index) => ({
+          filename: `image-${index + 1}`,
+          content: Buffer.from(await file.arrayBuffer()),
+          contentType: file.type,
+          cid: `image-${index + 1}`,
+        }))
+      )
+    : undefined;
+
+  const imageTags = images
+    ?.map(
+      (_, index) => `
+    <img 
+      src="cid:image-${index + 1}" 
+      alt="첨부 이미지 ${index + 1}" 
+      style="max-width: 100%; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 8px;" 
+    />
+  `
+    )
+    .join("");
 
   const mailOptions: MailOption = {
     to: process.env.NEXT_APP_EMAIL!,
-    from: formData.get("email") as string,
-    description: `신규 메시지, 발송자:${formData.get("name")}`,
+    from: email || "",
+    subject: title || "",
+    category: `신규 메시지, 카테고리:${category}`,
+    attachments,
     html: `
       <div style="
-        font-family: Arial, sans-serif; 
-        max-width: 600px; 
-        margin: 0 auto; 
-        padding: 20px; 
-        border: 1px solid #EDEDED; 
-        border-radius: 8px; 
-        background-color: #F9F9F9; 
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #EDEDED;
+        border-radius: 8px;
+        background-color: #F9F9F9;
         color: #333;
       ">
         <h1 style="color: #7B1FA2; font-size: 24px; text-align: center; margin-bottom: 20px;">
@@ -51,22 +76,13 @@ export default async function sendEmail(formData: FormData) {
         <p style="font-size: 16px; line-height: 1.5; margin-bottom: 20px;">
           아래는 고객님께서 보내주신 메시지입니다.
         </p>
-        <hr style="border: none; border-top: 1px solid #EDEDED; margin: 20px 0;">
-        <h2 style="color: #7B1FA2; font-size: 20px; margin-bottom: 10px;">
-          보낸 사람 정보
-        </h2>
-        <p style="margin: 0 0 10px;"><strong>이메일:</strong> ${formData.get(
-          "email"
-        )}</p>
-        <p style="margin: 0 0 10px;"><strong>제목:</strong> ${formData.get(
-          "title"
-        )}</p>
-        <h2 style="color: #7B1FA2; font-size: 20px; margin-bottom: 10px; margin-top: 20px;">
-          메시지 내용
-        </h2>
-        <p style="margin: 0 0 10px; font-size: 16px; line-height: 1.5;">
-          ${formData.get("description")}
-        </p>
+        <h2 style="color: #7B1FA2; font-size: 20px;">보낸 사람 정보</h2>
+        <p><strong>이메일:</strong> ${email}</p>
+        <p><strong>제목:</strong> ${title}</p>
+        <h2 style="color: #7B1FA2; font-size: 20px;">메시지 내용</h2>
+        <p>${description}</p>
+        <h2 style="color: #7B1FA2; font-size: 20px;">첨부 이미지</h2>
+        ${imageTags}
       </div>
     `,
   };

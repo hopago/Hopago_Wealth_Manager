@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ControllerRenderProps } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 
@@ -25,8 +25,10 @@ export const ImagePreview = ({
   width = "240px",
   height = "150px",
 }: ImagePreviewProps) => {
-  const [hover, setHover] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const [hover, setHover] = useState(false);
+  const [blobUrl, setBlobUrl] = useState("");
 
   const onClickRemove = () => {
     if (field.value) {
@@ -49,6 +51,13 @@ export const ImagePreview = ({
     }
   };
 
+  useEffect(() => {
+    const url = URL.createObjectURL(file);
+    setBlobUrl(url);
+
+    return () => URL.revokeObjectURL(url);
+  }, [file.name]);
+
   return (
     <div
       className="relative rounded-md overflow-hidden cursor-pointer"
@@ -60,12 +69,7 @@ export const ImagePreview = ({
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10" />
       )}
 
-      <Image
-        src={URL.createObjectURL(file)}
-        alt="uploaded_image"
-        className="object-cover"
-        fill
-      />
+      <Image src={blobUrl} alt="uploaded_image" className="object-cover" fill />
 
       {hover && (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 z-20">
