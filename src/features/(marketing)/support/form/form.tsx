@@ -145,8 +145,8 @@ export const SupportForm = () => {
                 </FormControl>
                 <FormMessage />
                 <EmailVerificationButton
-                  isVerified={isVerified}
                   setIsVerified={setIsVerified}
+                  email={field.value}
                 />
               </FormItem>
             )}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -12,32 +13,61 @@ import {
 import { VariantProps } from "class-variance-authority";
 import { ResponsiveModal } from "../responsive-modal";
 import { Input } from "@/components/ui/input";
+import { getVerificationTokenByToken } from "@/features/(auth)/services/verification-token";
 
 interface UseEmailVerificationModalProps {
+  email: string;
   title: string;
   message: string;
   variant: VariantProps<typeof buttonVariants>;
-  isVerified: boolean;
   setIsVerified: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const useEmailVerificationModal = ({
+  email,
   title,
   message,
   variant,
-  isVerified,
   setIsVerified,
 }: UseEmailVerificationModalProps): [
   JSX.Element,
   React.Dispatch<React.SetStateAction<boolean>>
 ] => {
-  useEffect(() => {
-    // TODO: send email and post 2fa code to db
-  }, []);
-
   const [isVerificationModalOpen, setVerificationModalOpen] = useState(false);
-  const [verificationCode, setVerificationCode] = useState<string>("");
+  const [verificationTokenClient, setVerificationTokenClient] =
+    useState<string>("");
   const [resendAttemptCount, setResendAttemptCount] = useState(3);
+
+  useEffect(() => {
+    if (verificationTokenClient.length < 6) return;
+
+    const verifyToken = async () => {
+      try {
+        const token = await getVerificationTokenByToken(
+          verificationTokenClient
+        );
+        if (!token) {
+          setVerificationTokenClient("");
+          toast.error("인증번호를 확인해 주세요. 잘못된 인증번호입니다.");
+          return;
+        }
+
+        const { expires } = token;
+        if (new Date(expires) < new Date()) {
+          setVerificationTokenClient("");
+          toast.error("인증번호가 만료되었습니다. 다시 요청해 주세요.");
+          return;
+        }
+
+        toast.success("인증이 완료되었습니다! 🎉");
+      } catch (error) {
+        console.error("Error fetching token:", error);
+        toast.error("문제가 발생했습니다. 잠시 후 다시 시도해 주세요. 🙇‍♂️");
+      }
+    };
+
+    verifyToken();
+  }, [verificationTokenClient.length]);
 
   const VerificationDialog = (
     <ResponsiveModal
@@ -53,8 +83,8 @@ export const useEmailVerificationModal = ({
           <div className="w-full flex flex-col gap-y-2 lg:flex-row gap-x-2 items-center justify-end">
             <Input
               placeholder="이메일로 받은 인증 코드를 입력해 주세요"
-              value={verificationCode}
-              onChange={(e) => setVerificationCode(e.target.value)}
+              value={verificationTokenClient}
+              onChange={(e) => setVerificationTokenClient(e.target.value)}
             />
             <Button
               onClick={() => {}}
