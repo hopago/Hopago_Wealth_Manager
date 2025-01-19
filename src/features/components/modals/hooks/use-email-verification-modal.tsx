@@ -33,6 +33,8 @@ export const useEmailVerificationModal = ({
   JSX.Element,
   React.Dispatch<React.SetStateAction<boolean>>
 ] => {
+  // TODO: 이메일 성공 후 처리, 이메일 재전송 처리
+
   const [isVerificationModalOpen, setVerificationModalOpen] = useState(false);
   const [verificationTokenClient, setVerificationTokenClient] =
     useState<string>("");
