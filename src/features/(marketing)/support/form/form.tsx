@@ -68,6 +68,7 @@ export const SupportForm = () => {
     try {
       const { success, errors } = await sendEmail(formData);
       if (success) {
+        // TODO:
       } else if (errors) {
         console.log(errors);
       }

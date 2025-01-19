@@ -29,16 +29,4 @@ export const TOASTER_COLORS = {
     border: "var(--custom-gray)",
     shadow: "rgba(245, 245, 245, 0.1)",
   },
-  custom: {
-    background: "var(--custom-white)",
-    text: "var(--custom-black)",
-    border: "var(--custom-gray-light)",
-    shadow: "rgba(245, 245, 245, 0.3)",
-  },
-  purple: {
-    background: "var(--custom-purple-dark)",
-    text: "var(--custom-white)",
-    border: "var(--custom-purple)",
-    shadow: "rgba(123, 31, 162, 0.5)",
-  },
 };
