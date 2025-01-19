@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -26,9 +26,13 @@ import { Button } from "@/components/ui/button";
 import { CameraIcon } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { ImagePreview } from "@/features/components/image-preview";
-import sendEmail from "@/features/actions/send-email";
+import sendEmail from "@/features/actions/send-email.support";
+import { toast } from "sonner";
+import { EmailVerificationButton } from "@/features/components/buttons/email-verification-button";
 
 export const SupportForm = () => {
+  const [isVerified, setIsVerified] = useState(false);
+
   const inputRef = useRef<HTMLInputElement>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -67,12 +71,19 @@ export const SupportForm = () => {
 
     try {
       const { success, errors } = await sendEmail(formData);
+
       if (success) {
-        // TODO:
+        toast.success(
+          "요청이 성공적으로 처리되었습니다. 확인 이메일을 확인해 주세요! 😊"
+        );
       } else if (errors) {
-        console.log(errors);
+        toast.error("입력 정보를 다시 확인해 주세요.");
+        // TODO: FOR DEVELOP
+        errors.forEach((err) => console.log(err));
       }
     } catch (error) {
+      toast.error("서버에 문제가 발생했습니다. 잠시 후 다시 시도해 주세요. 🙇‍♂️");
+      // TODO: FOR DEVELOP
       console.log(error);
     }
   };
@@ -121,8 +132,8 @@ export const SupportForm = () => {
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-sm font-semibold text-custom-gray">
+              <FormItem className="flex flex-col gap-1">
+                <FormLabel className="text-sm font-semibold text-custom-gray relative">
                   이메일
                 </FormLabel>
                 <FormControl>
@@ -133,6 +144,10 @@ export const SupportForm = () => {
                   />
                 </FormControl>
                 <FormMessage />
+                <EmailVerificationButton
+                  isVerified={isVerified}
+                  setIsVerified={setIsVerified}
+                />
               </FormItem>
             )}
           />
